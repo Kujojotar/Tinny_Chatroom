@@ -21,15 +21,15 @@
 
 ## 项目效果预览
 
-![login](.\images\login.jpg)
+<img src=".\images\login.jpg" alt="receiveAndResponse" style="zoom:150%;" />
 
 <center>用户登录界面</center>
 
-![board](.\images\board.jpg)
+<img src=".\images\board.jpg" alt="receiveAndResponse" style="zoom:150%;" />
 
 <center>用户好友主界面</center>
 
-![sendTextAndFile](.\images\sendTextAndFile.jpg)
+<img src=".\images\sendTextAndFile.jpg" alt="receiveAndResponse" style="zoom:150%;" />
 
 <center>用户kinsn向用户hello发送文字与图片</center>
 
@@ -37,6 +37,6 @@
 
 <center>用户hello收到消息并向kinsn回复图片</center>
 
-![receiveResponse](.\images\receiveResponse.jpg)
+<img src=".\images\receiveResponse.jpg" alt="receiveAndResponse" style="zoom:150%;" />
 
 <center>kinsn接收用户hello回复图片</center>
