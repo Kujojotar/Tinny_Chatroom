@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.chat.dao.FriendGroupMapper">
+  <resultMap id="BaseResultMap" type="com.james.chat.entity.FriendGroup">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="userId" jdbcType="BIGINT" property="userid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from friendgroup
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.james.chat.entity.FriendGroup">
+    insert into friendgroup (id, `name`, userId
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.james.chat.entity.FriendGroup">
+    update friendgroup
+    set `name` = #{name,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, `name`, userId
+    from friendgroup
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, `name`, userId
+    from friendgroup
+  </select>
+  <select id="searchGroupsWithKeyword" resultMap="BaseResultMap">
+    select distinct `name`
+    from friendgroup where friendgroup.name like CONCAT(CONCAT('%',#{arg0}),'%') limit #{arg1};
+  </select>
+  <select id="searchGroupsWithName" resultMap="BaseResultMap">
+    select distinct `name`
+    from friendgroup where friendgroup.name = #{arg0} limit #{arg1};
+  </select>
+  <select id="searchGroupsWithKeywordExplicit" resultMap="BaseResultMap">
+    select distinct `name`
+    from friendgroup where friendgroup.name like CONCAT(CONCAT('%',#{arg0}),'%') and friendgroup.name not in (select `name` from friendgroup where userId = (select userId from user where userName = #{arg2})) limit #{arg1};
+  </select>
+</mapper>

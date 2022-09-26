@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.chat.dao.UserFriendsMapper">
+  <resultMap id="BaseResultMap" type="com.james.chat.entity.UserFriends">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="friendid" jdbcType="BIGINT" property="friendid" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="groupid" jdbcType="BIGINT" property="groupid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from friends
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.james.chat.entity.UserFriends">
+    insert into friends (id, userid, friendid,
+      remark, groupid)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=BIGINT}, #{friendid,jdbcType=BIGINT},
+      #{remark,jdbcType=VARCHAR}, #{groupid,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.james.chat.entity.UserFriends">
+    update friends
+    set userid = #{userid,jdbcType=BIGINT},
+      friendid = #{friendid,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      groupid = #{groupid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, userid, friendid, remark, groupid
+    from friends
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, userid, friendid, remark, groupid
+    from friends
+  </select>
+</mapper>

@@ -1,0 +1,13 @@
+ct.iml
+./target/**
+./.idea/**
+./.git/**
+./src/resources/application.yml
+./src/resources/generatorConfig.xml
+./src/main/java/com/james/chat/redis/JedisConfiguration.java
+./src/main/java/com/james/chat/util/AesUtil.java
+./src/main/java/com/james/chat/util/EncodeUtil.java
+./src/main/java/com/james/chat/util/HandshakeUtil.java
+./src/main/java/com/james/chat/util/PhashUtil.java
+./src/main/java/com/james/chat/util/RsaUtils.java
+./src/main/java/com/james/chat/util

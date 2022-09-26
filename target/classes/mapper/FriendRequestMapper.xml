@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.chat.dao.FriendRequestMapper">
+  <resultMap id="BaseResultMap" type="com.james.chat.entity.FriendRequest">
+    <result column="request_user" jdbcType="BIGINT" property="requestUser" />
+    <result column="accept_user" jdbcType="BIGINT" property="acceptUser" />
+    <result column="request_description" jdbcType="VARCHAR" property="requestDescription" />
+  </resultMap>
+  <insert id="insert" parameterType="com.james.chat.entity.FriendRequest">
+    insert into friend_request (request_user, accept_user)
+    values (#{requestUser,jdbcType=BIGINT}, #{acceptUser,jdbcType=BIGINT})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select request_user, accept_user,request_description
+    from friend_request
+  </select>
+  <select id="getUserRequests" resultMap="BaseResultMap">
+    select request_user, accept_user,request_description
+    from friend_request where accept_user=(select userId from user where userName=#{username});
+  </select>
+</mapper>
